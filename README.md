@@ -11,6 +11,7 @@
     RN Localization": https://github.com/stefalda/ReactNativeLocalization - Translate the app    
     RN Ping": https://www.npmjs.com/package/react-native-ping - Execute the ping command and return the time of response
 
+To run in your device, clone this repository, execute the commands "npm -install" and "react-native run-android"
 
 # About the app
 - How it works?
