@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, ImageBackground, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
+import { ScrollView, View, Text, ImageBackground, StyleSheet, Linking } from 'react-native';
 import { strings } from '../components/localization';
 
 export default class about extends Component{
@@ -36,14 +36,6 @@ export default class about extends Component{
                             <Text style={{color: '#009'}} onPress={()=>Linking.openURL('https://bit.ly/pingmegit')}>bit.ly/pingmegit</Text>
                         </Text>
                     </View>
-                    <TouchableOpacity style={{padding: '5%', alignItems: 'center'}}
-                    onPress={()=> this.props.navigation.navigate("Coffee")}>
-                        <Image 
-                            source={require('../img/buymecoffee.png')}
-                            resizeMode='contain'
-                            style={{height: 50}}
-                        />
-                    </TouchableOpacity>
                 </ScrollView>
             </ImageBackground>
         );
