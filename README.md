@@ -6,7 +6,8 @@
 
   Dependencies:
 
-    React Navigation: https://reactnavigation.org/en/ - Navigation between screens    
+    React Navigation: https://reactnavigation.org/en/ - Navigation between screens
+    RN Size Matters: https://github.com/nirsky/react-native-size-matters - Adjust size of screen components
     RN Firebase: https://firebase.google.com/ - Ads and analytics    
     RN Localization": https://github.com/stefalda/ReactNativeLocalization - Translate the app    
     RN Ping": https://www.npmjs.com/package/react-native-ping - Execute the ping command and return the time of response
