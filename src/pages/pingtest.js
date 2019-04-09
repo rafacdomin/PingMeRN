@@ -32,11 +32,7 @@ export default class pingtest extends Component{
                 <TouchableOpacity onPress={() => navigation.navigate('Speed')}>
                     <Image
                         source={require('../img/internetspeedtest.png')}
-                        style={{ 
-                            width: 55, 
-                            height: '55%',
-                            resizeMode: "contain", 
-                    }}/>
+                        style={styles.speedStyle}/>
                 </TouchableOpacity>
             ),
             headerRight:(
@@ -250,7 +246,7 @@ export default class pingtest extends Component{
                     </Picker>
                     <Text style={styles.text}>Server:</Text>
                     {this.ServerOptions()}
-                    <View style={{width: '30%', margin: 25, flex:1}}>
+                    <View style={styles.StartView}>
                         <TouchableOpacity style={styles.button} onPress={() =>{
                             if(this.state.connectionType== 'wifi'){
                                 this.props.navigation.navigate("Results",{IP: this.state.server, game: this.state.game})
@@ -274,6 +270,15 @@ export default class pingtest extends Component{
 }
 
 const styles = ScaledSheet.create({
+    speedStyle: { 
+        width: '45@s',
+        margin: '10@s', 
+        resizeMode: "contain", 
+    },
+    StartView: {
+        width: '100@s',
+        height: '100@s', 
+    },
     Logostyle: {
         flex: 1,
         justifyContent: 'center',
@@ -326,6 +331,7 @@ const styles = ScaledSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginVertical: '30@s',
         backgroundColor: '#1E90FF',
         borderRadius: 50
     },

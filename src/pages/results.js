@@ -23,7 +23,7 @@ export default class result extends Component{
 
     componentDidMount(){
         this.pingtest()
-        this.showAd()
+        //this.showAd()
     }
 
     componentWillUnmount(){
@@ -31,7 +31,7 @@ export default class result extends Component{
     }
 
     static navigationOptions= {
-        headerTitle: <Text style={{fontSize: 23, color: '#fff', fontWeight: 'bold', fontFamily: 'monospaced',}}>Results</Text>,
+        headerTitle: <Text style={{fontSize: 23, color: '#fff', fontWeight: 'bold', fontFamily: 'monospaced'}}>Results</Text>,
         headerTintColor: 'white',
         headerStyle: {
             backgroundColor:'#1E90FF'
@@ -46,8 +46,8 @@ export default class result extends Component{
             return(
                 <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
                     <ActivityIndicator size='large' color="#1E90FF" />
-                    <Text style={{fontSize: 12, color: '#000', padding: 10, paddingBottom: 0}}>Loading...</Text>
-                    <Text style={{fontSize: 12, color: '#000'}}>This may take a few minutes</Text>
+                    <Text style={styles.loadingTxt}>Loading...</Text>
+                    <Text style={styles.fewMinutes}>This may take a few minutes</Text>
                 </View>
             );
         }
@@ -57,8 +57,8 @@ export default class result extends Component{
                         <Text style={styles.txt}>Max:</Text>
                     </View>
                     <View style={styles.ping}>
-                        <Text style={[styles.txt,{fontSize: 30}]}>{this.state.average} ms</Text>
-                        <Text style={[styles.txt,{fontSize: 30}]}>{this.state.maximum} ms</Text>
+                        <Text style={styles.txt2}>{this.state.average} ms</Text>
+                        <Text style={styles.txt2}>{this.state.maximum} ms</Text>
                     </View>
                     <View style={styles.game}>
                         <Text style={styles.txt}>{this.state.game}</Text>
@@ -217,16 +217,16 @@ export default class result extends Component{
                     {this.loadFunc()}
                 </View>
                 <View style={styles.buttonContainer}>
-                   <View style={{padding: '2%', flex: 1, marginBottom: '10%', paddingLeft: '5%', paddingTop: '10%',}}>
-                       <Text style={{fontSize: 18, color: '#FF0000', fontWeight: 'bold'}}>{strings.Warning}</Text>
+                   <View style={styles.warningView}>
+                       <Text style={styles.warningTxt}>{strings.Warning}</Text>
                    </View>
-                   <View style={{flexDirection: 'row', flex: 2, justifyContent: 'space-evenly', alignItems: 'center'}}>
-                       <View style={{width: '30%', margin: 35}}>
+                   <View style={styles.buttonsView}>
+                       <View style={styles.btnview2}>
                            <TouchableOpacity style={styles.button} onPress = {this.pingtest}>
                                 <Text style={styles.btntxt}>Test Again</Text>
                            </TouchableOpacity>
                        </View>
-                       <View style={{width: '30%', margin: 35}}>
+                       <View style={styles.btnview2}>
                            <TouchableOpacity style={styles.button} onPress={() => {
                                this.showAd()
                                this.props.navigation.goBack()}}>
@@ -249,6 +249,39 @@ export default class result extends Component{
 }
 
 const styles = ScaledSheet.create({
+    btnview2: {
+        width: '100@s',
+        height: '100@s', 
+        margin: '35@s'
+    },
+    buttonsView: {
+        flexDirection: 'row', 
+        flex: 2, 
+        justifyContent: 'space-evenly', 
+        alignItems: 'center'
+    },
+    warningTxt: {
+        fontSize: '18@s', 
+        color: '#FF0000', 
+        fontWeight: 'bold'
+    },
+    warningView: {
+        padding: '5@s', 
+        flex: 1, 
+        marginBottom: '30@s', 
+        paddingLeft: '15@s', 
+        paddingTop: '30@s'
+    },
+    fewMinutes: {
+        fontSize: '12@s', 
+        color: '#000'
+    },
+    loadingTxt: {
+        fontSize: '12@s', 
+        color: '#000', 
+        padding: '10@s', 
+        paddingBottom: '0@s'
+    },
     container:{
         flex: 1
     },
@@ -283,13 +316,20 @@ const styles = ScaledSheet.create({
         color: '#000',
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+    txt2:{
+        fontSize: "30@s",
+        color: '#000',
+        fontWeight: 'bold',
+        textAlign: 'center'
     }, 
     button:{
         flex: 1,
-        borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        marginVertical: '30@s',
         backgroundColor: '#1E90FF',
+        borderRadius: 50
     },
     btntxt:{
         fontWeight: 'bold',
