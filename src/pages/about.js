@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, ImageBackground, StyleSheet, Linking } from 'react-native';
+import { ScrollView, View, Text, ImageBackground, Linking } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 import { strings } from '../components/localization';
 
 export default class about extends Component{
@@ -42,27 +43,27 @@ export default class about extends Component{
     }
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container:{
         flex: 1,
     },
     titleText:{
-        fontSize: 20,
+        fontSize: '20@s',
         fontWeight: 'bold',
         color: '#000',
-        paddingVertical: '2%',
+        paddingVertical: '10@s',
         fontFamily: 'Roboto',
         textAlign: 'center',
     },
     elementText:{
-        fontSize: 14,
-        paddingHorizontal: '2%',
+        fontSize: '14@s',
+        paddingHorizontal: '10@s',
         color: '#001',
         fontFamily: 'Roboto',
     },
     Content:{
         flex: 1,
-        marginVertical: '5%',
+        marginVertical: '13@s',
     },
 
 });

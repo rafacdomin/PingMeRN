@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, StyleSheet, ActivityIndicator,} from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native';
 import Ping from 'react-native-ping';
 import { strings } from '../components/localization';
+import firebase from 'react-native-firebase';
+import { ScaledSheet } from 'react-native-size-matters';
 
 export default class result extends Component{
     constructor(){
@@ -15,11 +17,17 @@ export default class result extends Component{
             bye: false,
         }
         this.pingtest = this.pingtest.bind(this)
+        this.showAd = this.showAd.bind(this)
         this.state = this.initialState
     }
 
     componentDidMount(){
         this.pingtest()
+        this.showAd()
+    }
+
+    componentWillUnmount(){
+        this.showAd()
     }
 
     static navigationOptions= {
@@ -59,6 +67,22 @@ export default class result extends Component{
                     </View>
         );
     }
+
+    showAd(){
+        const advert = firebase.admob().interstitial('ca-app-pub-3940256099942544/1033173712');
+
+        const AdRequest = firebase.admob.AdRequest;
+        const request = new AdRequest();
+        request.addKeyword('foo').addKeyword('bar');
+
+        // Load the advert with our AdRequest
+        advert.loadAd(request.build());
+
+        advert.on('onAdLoaded', () => {
+            advert.show();
+        });
+    }
+
     async pingtest(){
         this.setState({
             loading: true
@@ -68,7 +92,7 @@ export default class result extends Component{
         let G = navigation.getParam('game', 'GAME');
         let serv;
         let avg = 0, max;
-        for(let i = 0; i<100 ;i++){
+        for(let i = 0; i<20 ;i++){
             const ms = await Ping.start(IP)
             if(i == 0){
                 max = ms;
@@ -173,7 +197,7 @@ export default class result extends Component{
                             break;
         }
         this.setState({
-            average: parseInt(avg/100),
+            average: parseInt(avg/20),
             maximum: max,
             game: G,
             server: serv,
@@ -182,6 +206,11 @@ export default class result extends Component{
     }
 
     render(){
+        const Banner = firebase.admob.Banner;
+        const AdRequest = firebase.admob.AdRequest;
+        const request = new AdRequest();
+        const Id = 'ca-app-pub-3940256099942544/6300978111';
+
         return(
             <ImageBackground source = {require('../img/fundo.jpg')} style = {styles.container}>
                 <View style={styles.resultContainer}>
@@ -199,6 +228,7 @@ export default class result extends Component{
                        </View>
                        <View style={{width: '30%', margin: 35}}>
                            <TouchableOpacity style={styles.button} onPress={() => {
+                               this.showAd()
                                this.props.navigation.goBack()}}>
                                 <Text style={styles.btntxt}>Change Server</Text>
                            </TouchableOpacity>
@@ -207,13 +237,18 @@ export default class result extends Component{
                    
                 </View>
                 <View style={styles.adContainer}>
+                    <Banner
+                        unitId={Id}
+                        size={'SMART_BANNER'}
+                        request={request.build()}
+                    />
                 </View>
             </ImageBackground>
         );
     }
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container:{
         flex: 1
     },
@@ -230,8 +265,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     info:{
-        paddingTop: '10%',
-        paddingBottom: '0%',
+        paddingTop: '25@s',
+        paddingBottom: '0@s',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     },
@@ -240,24 +275,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     game:{
-        padding: '10%',
+        padding: '25@s',
         alignItems: 'center',
     },
     txt:{
-        fontSize: 20,
+        fontSize: "20@s",
         color: '#000',
         fontWeight: 'bold',
         textAlign: 'center'
     }, 
     button:{
         flex: 1,
+        borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1E90FF',
     },
     btntxt:{
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: '12@s',
         color: '#000',
     }
 })

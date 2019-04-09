@@ -55,6 +55,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    MobileAds.initialize(this,"ca-app-pub-7987914246691031~9800293270");
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

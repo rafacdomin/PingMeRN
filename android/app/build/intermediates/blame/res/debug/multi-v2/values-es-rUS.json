@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rafael/Documentos/ProjetosReact/pingmeRN/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rUS/values-es-rUS.xml",
+            "outputFile": "/home/rafael/ReactNativeProjects/PingMeRN/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rUS/values-es-rUS.xml",
             "map": [
                 {
                     "source": "/home/rafael/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/7e62260429a2af6c56237cc3afff38b1/res/values-es-rUS/values.xml",

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity, Text, StyleSheet, Picker, StatusBar, ImageBackground, NetInfo } from 'react-native';
+import { View, Image, TouchableOpacity, Text, Picker, StatusBar, ImageBackground, NetInfo } from 'react-native';
 import LogoTitle from '../components/LogoTitle';
 import OfflineNotice from '../components/offlineNotice';
+import firebase from 'react-native-firebase';
+import { ScaledSheet } from 'react-native-size-matters';
 
 export default class pingtest extends Component{
     constructor(){
@@ -38,8 +40,8 @@ export default class pingtest extends Component{
                 </TouchableOpacity>
             ),
             headerRight:(
-                <TouchableOpacity style={{ padding: '2%' }} onPress={()=> navigation.navigate('About')} >
-                    <Text style={styles.Aboutstyle}>?</Text>
+                <TouchableOpacity style={{ flex: 1 }} onPress={()=> navigation.navigate('About')} >
+                    <Text style={styles.Aboutstyle}>?  </Text>
                 </TouchableOpacity>
             ),
         };
@@ -220,6 +222,11 @@ export default class pingtest extends Component{
         NetInfo.getConnectionInfo().then((connectionInfo) => {
             this.setState({ connectionType: connectionInfo.type})
         });
+
+        const Banner = firebase.admob.Banner;
+        const AdRequest = firebase.admob.AdRequest;
+        const request = new AdRequest();
+        const Id = 'ca-app-pub-3940256099942544/6300978111';
         
         return(
             <ImageBackground style = {styles.container} source = {require('../img/fundo.jpg')}>
@@ -255,14 +262,18 @@ export default class pingtest extends Component{
                     </View>
                 </View>
                 <View style={styles.adContainer}>
-                    
+                    <Banner
+                        unitId={Id}
+                        size={'SMART_BANNER'}
+                        request={request.build()}
+                    />
                 </View>
             </ImageBackground>
         );
     }
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     Logostyle: {
         flex: 1,
         justifyContent: 'center',
@@ -270,10 +281,10 @@ const styles = StyleSheet.create({
     },
     Aboutstyle: {
         fontFamily: 'sans-serif-condensed',
-        fontSize: 25,
+        fontSize: "25@s",
         color: '#fff',
         fontWeight: 'bold',
-        paddingRight: 10
+        paddingRight: '10@s'
     },
     container:{
         flex: 1,
@@ -297,16 +308,16 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
     },
     pickercontainer:{
-        width: '60%',
-        height: '13%',
+        width: '200@s',
+        height: '30@s',
         backgroundColor: '#1E90FF',
     },
     text:{
         fontWeight: 'bold', 
-        fontSize: 18,
+        fontSize: "18@s",
         color: '#000',
-        paddingTop: '5%',
-        paddingBottom: '0.5%',
+        paddingTop: '15@s',
+        paddingBottom: '2@s',
     },
     svtxt:{
         textAlign: 'center',
@@ -316,10 +327,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1E90FF',
+        borderRadius: 50
     },
     txtbtn:{
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: '12@s',
         color: '#000'
     },
 })

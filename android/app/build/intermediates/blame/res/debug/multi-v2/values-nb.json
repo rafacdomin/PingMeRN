@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rafael/Documentos/ProjetosReact/pingmeRN/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml",
+            "outputFile": "/home/rafael/ReactNativeProjects/PingMeRN/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml",
             "map": [
                 {
                     "source": "/home/rafael/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e4271657688b1396b2e9ee67b3ddc16b/res/values-nb/values-nb.xml",
